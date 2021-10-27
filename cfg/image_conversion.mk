@@ -41,6 +41,21 @@
 #$(eval $(call IMG2SP, CONVERT_PALETTE , $(PALETTE), g_palette ))
 #$(eval $(call IMG2SP, CONVERT         , img.png , w, h, array, palette, tileset))
 
+PALETTE0=0 8 13 3 6 15 24 16 9 12 20 14 2 4 1 26
+PALETTE1=0 26 13 8
+
+$(eval $(call IMG2SP, SET_MODE        , 0                  ))
+$(eval $(call IMG2SP, SET_FOLDER      , src/assets/sprites               ))
+$(eval $(call IMG2SP, SET_IMG_FORMAT  , sprites            ))	
+$(eval $(call IMG2SP, SET_OUTPUT      , c                  )) 
+$(eval $(call IMG2SP, SET_PALETTE_FW  , $(PALETTE0)         ))
+$(eval $(call IMG2SP, CONVERT_PALETTE , $(PALETTE0), g_palette0 ))
+$(eval $(call IMG2SP, CONVERT         , assets/font_chars_0.png , 4, 675, s_font_0, ,))
+$(eval $(call IMG2SP, SET_PALETTE_FW  , $(PALETTE1)         ))
+$(eval $(call IMG2SP, CONVERT_PALETTE , $(PALETTE1), g_palette1 ))
+$(eval $(call IMG2SP, SET_MODE        , 1                  ))
+$(eval $(call IMG2SP, CONVERT         , assets/font_chars_1.png , 4, 675, s_font_1, ,))
+
 ##
 ## OLD MACROS (For compatibility)
 ##

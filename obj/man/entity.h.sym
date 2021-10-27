@@ -1,0 +1,33 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.=  2710 L   |     .__.ABS.=  0000 G   |     .__.CPU.=  0000 L
+    .__.H$L.=  0000 L   |     ENTITY_S=  0016     |     MAX_ENTI=  000A 
+    _cpct_ke   **** GX  |     _g_palet   **** GX  |     _g_palet   **** GX
+    _s_font_   **** GX  |     _s_font_   **** GX  |     c_add_ca=  000E 
+    c_block =  0009     |     c_class =  0001     |     c_damage=  0008 
+    c_descri=  0007     |     c_energy=  0006     |     c_exhaus=  000D 
+    c_name  =  0003     |     c_offset=  000F     |     c_rarity=  0004 
+    c_sprite=  0002     |     c_status=  0000     |     c_streng=  000C 
+    c_type  =  0005     |     c_vulner=  000A     |     c_weak  =  000B 
+    cpct_dis   **** GX  |     cpct_dra   **** GX  |     cpct_dra   **** GX
+    cpct_dra   **** GX  |     cpct_get   **** GX  |     cpct_get   **** GX
+    cpct_get   **** GX  |     cpct_isA   **** GX  |     cpct_isK   **** GX
+    cpct_mem   **** GX  |     cpct_sca   **** GX  |     cpct_sca   **** GX
+    cpct_set   **** GX  |     cpct_set   **** GX  |     cpct_set   **** GX
+    cpct_set   **** GX  |     cpct_set   **** GX  |     cpct_wai   **** GX
+    cpct_wai   **** GX  |     e_cmp_an=  0010     |     e_cmp_co=  0020 
+    e_cmp_de=  0023     |     e_cmp_ia=  0008     |     e_cmp_in=  0004 
+    e_cmp_mo=  0002     |     e_cmp_re=  0001     |     e_type_c=  0002 
+    e_type_c=  0001     |     e_type_c=  0004     |     e_type_i=  0000 
+    man_enti   **** GX  |     man_enti   **** GX  |     sizeof_c=  000F 
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE      size    0   flags    0
+
