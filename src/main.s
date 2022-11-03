@@ -22,9 +22,9 @@
 .include "sys/text.h.s"
 .include "sys/messages.h.s"
 .include "sys/util.h.s"
+.include "sys/input.h.s"
 .include "man/menu.h.s"
 ;;.include "sys/board.h.s"
-;;.include "sys/input.h.s"
 ;;.include "man/entity.h.s"
 ;;.include "man/game.h.s"
 ;;.include "sys/audio.h.s"
@@ -100,12 +100,13 @@ start:
 
    ;; Loop forever
 loop:
-   ;;delay(10);
-   ld b, #3
-   call sys_util_delay
-   ;;cpct_waitVSYNC();
+   ld b, #3                            ;; Delay
+   call sys_util_delay                 ;; 
+
+   call sys_input_main_menu_update     ;; Check input
+
    call cpct_waitVSYNC_asm
-   ;;updateIcon(&icon);
+   
    call man_menu_updateIcon
 
    jr    loop

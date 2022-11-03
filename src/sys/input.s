@@ -23,7 +23,7 @@
 ;;.include "man/game.h.s"
 .include "sys/util.h.s"
 .include "sys/render.h.s"
-;;.include "man/fight.h.s"
+.include "man/menu.h.s"
 ;;.include "man/deck.h.s"
 ;;.include "man/array.h.s"
 ;;.include "man/game.h.s"
@@ -53,13 +53,13 @@ sys_input_debug_key_actions::
     ;;.dw Joy0_Fire1, _score_fire
     .dw 0
 
-sys_input_add_card_key_actions::
+sys_input_main_menu_actions::
     ;;.dw Key_O,      sys_input_ac_selected_left
     ;;.dw Key_P,      sys_input_ac_selected_right
     ;;.dw Key_Esc,    sys_input_ac_cancel
-    ;;.dw Key_Space,  sys_input_ac_action
-    ;;.dw Key_Q,      sys_input_add_card
-    ;;.dw Key_A,      sys_input_remove_card
+    .dw Key_Space,  sys_input_main_menu_action
+    .dw Key_Q,      sys_input_main_menu_up
+    .dw Key_A,      sys_input_main_menu_down
     ;;.dw Key_Esc,    _score_cancel_entry
     ;;.dw Joy0_Left,  _score_move_left
     ;;.dw Joy0_Right, _score_move_right
@@ -248,15 +248,83 @@ sys_input_debug_update::
 
 ;;-----------------------------------------------------------------
 ;;
-;; sys_input_add_card_update
+;; sys_input_main_menu_up
+;;
+;;  Input: 
+;;  Output:
+;;  Modified: iy, bc
+;;
+sys_input_main_menu_up::
+    ld ix, #icon
+
+    call man_menu_deleteIcon            ;; erase icon
+
+    ld a, TIcon_selectedOption(ix)      ;; check if selectedOption == 1
+    cp #1                               ;;
+    jr nz, simu_not_zero                ;;
+    ld a, #3                            ;; if 0 then a = 3
+    jr simu_update_selected             ;; go to update selectedOption
+simu_not_zero:
+    dec a                               ;; inc a
+simu_update_selected:
+    ld TIcon_selectedOption(ix), a      ;; update selectedOption
+        
+    call man_menu_drawIcon              ;; draw icon
+
+    ld b,#5                             ;; Delay
+    call sys_util_delay                 ;;
+    ret
+
+;;-----------------------------------------------------------------
+;;
+;; sys_input_main_menu_down
+;;
+;;  Input: 
+;;  Output:
+;;  Modified: iy, bc
+;;
+sys_input_main_menu_down::
+    ld ix, #icon
+
+    call man_menu_deleteIcon            ;; erase icon
+
+    ld a, TIcon_selectedOption(ix)      ;; check if selectedOption == 0
+    cp #3                               ;;
+    jr nz, simd_not_zero                ;;
+    ld a, #1                            ;; if 0 then a = 1
+    jr simd_update_selected             ;; go to update selectedOption
+simd_not_zero:
+    inc a                               ;; inc a
+simd_update_selected:
+    ld TIcon_selectedOption(ix), a      ;; update selectedOption
+        
+    call man_menu_drawIcon              ;; draw icon
+
+    ld b,#5                             ;; Delay
+    call sys_util_delay                 ;;
+    ret
+
+;;-----------------------------------------------------------------
+;;
+;; sys_input_main_menu_action
+;;
+;;  Input: 
+;;  Output:
+;;  Modified: iy, bc
+;;
+sys_input_main_menu_action::
+    ret
+;;-----------------------------------------------------------------
+;;
+;; sys_input_menu_update
 ;;
 ;;   Initializes input
 ;;  Input: 
 ;;  Output:
 ;;  Modified: iy, bc
 ;;
-sys_input_add_card_update::
-    ld iy, #sys_input_add_card_key_actions
+sys_input_main_menu_update::
+    ld iy, #sys_input_main_menu_actions
     call sys_input_generic_update
     ret
 
