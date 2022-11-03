@@ -21,6 +21,7 @@
 .include "sys/render.h.s"
 .include "sys/text.h.s"
 .include "sys/messages.h.s"
+.include "sys/util.h.s"
 .include "man/menu.h.s"
 ;;.include "sys/board.h.s"
 ;;.include "sys/input.h.s"
@@ -93,10 +94,18 @@ _main::
    call _main_init
 
 start:
+   call man_menu_init_icon
    call man_menu_drawMenu
+   call man_menu_drawIcon
 
    ;; Loop forever
 loop:
-;;   call man_game_update
+   ;;delay(10);
+   ld b, #3
+   call sys_util_delay
+   ;;cpct_waitVSYNC();
+   call cpct_waitVSYNC_asm
+   ;;updateIcon(&icon);
+   call man_menu_updateIcon
 
    jr    loop

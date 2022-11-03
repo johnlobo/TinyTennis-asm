@@ -27,11 +27,10 @@
 ;; PUBLIC METHODS
 ;;===============================================================================
 .globl man_menu_init_icon
-;;.globl man_menu_initIcon
-;;.globl man_menu_deleteIcon
-;;.globl man_menu_drawIcon
+.globl man_menu_deleteIcon
+.globl man_menu_drawIcon
+.globl man_menu_updateIcon
 .globl man_menu_drawMenu
-;;.globl man_menu_updateIcon
 ;;===============================================================================
 ;; PUBLIC CONSTANTS
 ;;===============================================================================
