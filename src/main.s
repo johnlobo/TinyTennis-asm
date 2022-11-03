@@ -21,6 +21,7 @@
 .include "sys/render.h.s"
 .include "sys/text.h.s"
 .include "sys/messages.h.s"
+.include "man/menu.h.s"
 ;;.include "sys/board.h.s"
 ;;.include "sys/input.h.s"
 ;;.include "man/entity.h.s"
@@ -73,7 +74,7 @@ _main_init::
 
       call cpct_setSeed_mxor_asm
 
-      cpctm_clearScreen_asm 255
+      cpctm_clearScreen_asm 0
 
       ;;call sys_input_init
 
@@ -85,12 +86,14 @@ _main_init::
 ;;
 _main::
 
+   ld sp, #0x8000                               ;; Move the stack to 0x8000
+
    call sys_system_disable_firmware
 
    call _main_init
 
 start:
-;;   call man_game_init
+   call man_menu_drawMenu
 
    ;; Loop forever
 loop:

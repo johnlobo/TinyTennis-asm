@@ -28,6 +28,8 @@
 .globl _s_small_numbers_07
 .globl _s_small_numbers_08
 .globl _s_small_numbers_09
+.globl _sp_ball_0
+.globl _sp_ball_1
 
 ;;===============================================================================
 ;; CPCTELERA FUNCTIONS
@@ -109,5 +111,16 @@ FONT_HEIGHT = 9
 .mdelete EndStruct
 .macro EndStruct struct
     sizeof_'struct = struct'_offset
+.endm
+
+;;===============================================================================
+;; Macro
+;;
+;; Macro modified from cpctelera cpctm_screenPtr_asm
+;;===============================================================================
+
+.mdelete m_center_screen_ptr 
+.macro m_center_screen_ptr REG16, VMEM, Y, WIDTH
+   ld REG16, #VMEM + 80 * (Y / 8) + 2048 * (Y & 7) + ((80 - WIDTH)/2)   ;; [3] REG16 = screenPtr
 .endm
 

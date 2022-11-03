@@ -40,7 +40,7 @@ sys_render_init::
       
    cpctm_setBorder_asm HW_BLACK  ;; Set border to black
 
-   cpctm_clearScreen_asm 255     ;; Clear screen
+   cpctm_clearScreen_asm 0     ;; Clear screen
 	ret
 
 
