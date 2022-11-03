@@ -1,6 +1,4 @@
 ;;-----------------------------LICENSE NOTICE------------------------------------
-;;  This file is part of 1to1 Soccer: An Amstrad CPC Game
-;;  Copyright (C) 2020 Utopia (@UtopiaRetroDev)
 ;;
 ;;  This program is free software: you can redistribute it and/or modify
 ;;  it under the terms of the GNU Lesser General Public License as published by

@@ -14,5 +14,8 @@
 ;;  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;;-------------------------------------------------------------------------------
 
-.globl sys_system_enable_firmware
-.globl sys_system_disable_firmware
+
+.module render
+
+.globl sys_render_init
+.globl sys_render_update

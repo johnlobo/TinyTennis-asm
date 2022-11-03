@@ -14,5 +14,18 @@
 ;;  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;;-------------------------------------------------------------------------------
 
-.globl sys_system_enable_firmware
-.globl sys_system_disable_firmware
+
+;;===============================================================================
+;; PUBLIC VARIABLES
+;;===============================================================================
+.globl string_buffer
+
+;;===============================================================================
+;; PUBLIC METHODS
+;;===============================================================================
+.globl sys_util_h_times_e
+;;.globl sys_util_BCD_GetEnd
+;;.globl sys_util_BCD_Add
+;;.globl sys_util_BCD_Compare
+.globl sys_util_get_random_number
+.globl sys_util_delay

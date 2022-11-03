@@ -1,6 +1,4 @@
 ;;-----------------------------LICENSE NOTICE------------------------------------
-;;  This file is part of CPCtelera: An Amstrad CPC Game Engine 
-;;  Copyright (C) 2018 ronaldo / Fremos / Cheesetea / ByteRealms (@FranGallegoBR)
 ;;
 ;;  This program is free software: you can redistribute it and/or modify
 ;;  it under the terms of the GNU Lesser General Public License as published by
@@ -20,11 +18,11 @@
 .include "cpctelera.h.s"
 .include "common.h.s"
 .include "sys/system.h.s"
-;;.include "sys/render.h.s"
+.include "sys/render.h.s"
+.include "sys/text.h.s"
+.include "sys/messages.h.s"
 ;;.include "sys/board.h.s"
 ;;.include "sys/input.h.s"
-;;.include "sys/text.h.s"
-;;.include "sys/messages.h.s"
 ;;.include "man/entity.h.s"
 ;;.include "man/game.h.s"
 ;;.include "sys/audio.h.s"
@@ -42,6 +40,9 @@
 ;;
 .area _DATA
 
+_game_loaded_string: .asciz " GAME LOADED "      ;;27 chars, 54 bytes
+
+
 ;;
 ;; Start of _CODE area
 ;; 
@@ -58,33 +59,25 @@
 ;;
 _main_init::
 
-;;   call sys_audio_init
-;;
-;;   call sys_render_init
+      call sys_render_init
 
-   ;; set random seed
-   xor a
-   push af                             ;; store a=0 in the stack
-_main_init_keypress:
-   pop af                              ;; retrive a value form stack
-   inc a                               ;; inc a value
-   push af                             ;; store a value in stack
-   
-   inc hl
-   call cpct_isAnyKeyPressed_asm
-   or a
-   jr z, _main_init_keypress
+      ld e, #6                            ;; x
+      ld d, #78                           ;; y
+      ld b, #44                           ;; h
+      ld c, #60                           ;; w
+      ld hl, #_game_loaded_string         ;; message
+      ld a, #1                            ;; wait for a key
+      call sys_messages_show
 
-   ld hl, #0xbc00
-   ld de, #0xac00
-   pop af                              ;; retrieve last a value to set the seed
-   call cpct_setSeed_xsp40_u8_asm      ;; change seed
+      ;; set random seed using hl form message show
 
-   cpctm_clearScreen_asm 255
-   
-   ;;call sys_input_init
+      call cpct_setSeed_mxor_asm
 
-   ret
+      cpctm_clearScreen_asm 255
+
+      ;;call sys_input_init
+
+      ret
 ;;-----------------------------------------------------------------
 ;;
 ;; MAIN function. This is the entry point of the application.

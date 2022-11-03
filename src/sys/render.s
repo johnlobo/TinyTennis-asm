@@ -14,5 +14,43 @@
 ;;  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;;-------------------------------------------------------------------------------
 
-.globl sys_system_enable_firmware
-.globl sys_system_disable_firmware
+.include "cpctelera.h.s"
+.include "common.h.s"
+
+.module render
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; sys_render_init
+;;
+;; INPUT
+;; DESTROYS:
+;;
+sys_render_init::
+   ld c, #0                      ;; Set mode 0
+   call cpct_setVideoMode_asm    ;;
+
+   ld hl, #8000                  ;; cpct_memset(g_scrbuffers[0], 0x00, 0x4000);
+   ld de, #0                     ;;
+   ld bc, #4000                  ;;
+   call cpct_memset_f64_asm      ;;
+
+   ld hl,#_g_palette0            ;; Set palette
+   ld de,#16                     ;;
+   call cpct_setPalette_asm      ;;
+      
+   cpctm_setBorder_asm HW_BLACK  ;; Set border to black
+
+   cpctm_clearScreen_asm 255     ;; Clear screen
+	ret
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; sys_render_update
+;; 
+;; INPUT
+;; DESTROYS:
+;;
+sys_render_update::
+	
+	ret
+

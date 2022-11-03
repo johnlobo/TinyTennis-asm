@@ -1,6 +1,4 @@
 ;;-----------------------------LICENSE NOTICE------------------------------------
-;;  This file is part of CPCtelera: An Amstrad CPC Game Engine 
-;;  Copyright (C) 2018 ronaldo / Fremos / Cheesetea / ByteRealms (@FranGallegoBR)
 ;;
 ;;  This program is free software: you can redistribute it and/or modify
 ;;  it under the terms of the GNU Lesser General Public License as published by
@@ -20,6 +18,16 @@
 .globl _g_palette1
 .globl _s_font_0
 .globl _s_font_1
+.globl _s_small_numbers_00
+.globl _s_small_numbers_01
+.globl _s_small_numbers_02
+.globl _s_small_numbers_03
+.globl _s_small_numbers_04
+.globl _s_small_numbers_05
+.globl _s_small_numbers_06
+.globl _s_small_numbers_07
+.globl _s_small_numbers_08
+.globl _s_small_numbers_09
 
 ;;===============================================================================
 ;; CPCTELERA FUNCTIONS
@@ -44,6 +52,10 @@
 .globl cpct_waitVSYNC_asm
 .globl cpct_drawSpriteBlended_asm
 .globl _cpct_keyboardStatusBuffer
+.globl cpct_memset_f64_asm
+.globl cpct_getRandom_mxor_u8_asm
+.globl cpct_waitVSYNCStart_asm
+.globl cpct_setSeed_mxor_asm
 
 ;;===============================================================================
 ;; DEFINED CONSTANTS
@@ -63,6 +75,22 @@ e_cmp_ia = 0x08         ;;entidad controlable con ia
 e_cmp_animated = 0x10   ;;entidad animada
 e_cmp_collider = 0x20   ;;entidad que puede colisionar
 e_cmp_default = e_cmp_render | e_cmp_movable | e_cmp_collider  ;;componente por defecto
+
+
+;; Keyboard constants
+BUFFER_SIZE = 10
+ZERO_KEYS_ACTIVATED = #0xFF
+
+;; Score constants
+SCORE_NUM_BYTES = 4
+
+;; SMALL NUMBERS CONSTANTS
+S_SMALL_NUMBERS_WIDTH = 2
+S_SMALL_NUMBERS_HEIGHT = 5
+;; Font constants
+FONT_WIDTH = 2
+FONT_HEIGHT = 9
+
 
 ;;===============================================================================
 ;; DEFINED MACROS
